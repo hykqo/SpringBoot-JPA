@@ -4,6 +4,8 @@ import lombok.Getter;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Getter
 public class Delivery {
@@ -12,7 +14,7 @@ public class Delivery {
     @Column(name = "DELIVERY_ID")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
     private Order order;
 
     @Embedded
@@ -21,4 +23,7 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; //[READY], [COMP]
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }
