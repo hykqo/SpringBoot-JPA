@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
 public class MemberRepository {
 
-//    @PersistenceContext //springDataJpa를 사용하면 @Autowired로 바꿀 수 있다. 따라서 다른 서비스와 일관성 있게 주입해줄 수 있다.
-    private final EntityManager em; //엔티티메내저 인젝션
+    private final EntityManager em;
 
     public void save(Member member){ em.persist(member); }
 
