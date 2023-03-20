@@ -1,5 +1,8 @@
 package jpabook.jpashop.domain;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -11,7 +14,9 @@ import java.util.List;
 import static javax.persistence.FetchType.*;
 
 @Entity
+@Getter
 @Table(name = "ORDERS")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id @GeneratedValue
