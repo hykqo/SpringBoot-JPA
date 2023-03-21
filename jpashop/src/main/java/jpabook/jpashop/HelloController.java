@@ -14,6 +14,5 @@ public class HelloController {
         model.addAttribute("data","hello!!");
         //view네임을 명시한다
         return "hello";
-
     }
 }
