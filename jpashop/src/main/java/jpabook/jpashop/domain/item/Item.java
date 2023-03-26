@@ -25,6 +25,8 @@ public abstract class Item {
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
 
+    protected void setId(Long id){ this.id = id; }
+
     protected void setName(String name) {
         this.name = name;
     }
@@ -56,4 +58,9 @@ public abstract class Item {
         this.stockQuantity = restStock;
     }
 
+    public void updateItem(String name, int price, int stockQuantity){
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
 }
