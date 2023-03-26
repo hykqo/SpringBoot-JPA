@@ -17,7 +17,7 @@ public class ItemRepository {
         if(item.getId() == null) { //새로 생성한 객체라는 뜻.
             em.persist(item);
         } else {
-            em.merge(item); //db에 이미 등록된 값.
+            em.merge(item);
         }
     }
 
