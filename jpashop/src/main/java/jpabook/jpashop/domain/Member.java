@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,10 @@ public class Member {
     private Member(String name, Address address) {
         this.name = name;
         this.address = address;
+    }
+
+    public void updateName(String name){
+        this.name = name;
     }
 
 }
