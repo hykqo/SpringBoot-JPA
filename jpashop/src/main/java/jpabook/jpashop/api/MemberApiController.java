@@ -18,6 +18,38 @@ public class MemberApiController {
 
     private final MemberService memberService;
 
+
+    //양방향 연관관계에서 엔티티를 그대로 넘기면, jackSon 응답을 Json으로 변환하는 과정에서 무한 루프에 빠지게 된다.
+    //따라서 Jackson에서 제공하는 @JsonIgnore 라는 어노테이션을 이용해서 특정 값을 직렬화 대상에서 제외시킬 수 있다.
+    @GetMapping("v1/members")
+    public List<Member> membersV1(){
+        List<Member> members = memberService.fineMembers();
+        return members;
+    }
+
+    //배열자체를 json으로 보내면 안된다. 유연성을 위해서 data라는 콜렉션에 넣어서 반환시켜야 한다.
+    @GetMapping("v2/members")
+    public Result memberV2(){
+        List<Member> findMembers = memberService.fineMembers();
+        List<MemberDTO> collect = findMembers.stream().map(MemberDTO::new).collect(Collectors.toList());
+        return new Result(collect.size(), collect);
+    }
+    @Data
+    @AllArgsConstructor
+    static class MemberDTO{
+        private String name;
+        public MemberDTO(Member member) { this.name = member.getName();}
+    }
+    @Data
+    @AllArgsConstructor
+    static class Result<T>{
+        private int count;
+        private T data;
+    }
+
+
+
+
     @PostMapping("v1/members") //RequestBody어노테이션은 json으로 받은 데이터를 member객체로 치환해주는 기능이다. 엔티티와 API가 1:1로 매핑되어있다.이러면 안된다. 별도로 DTO로 구성을 해야 한다.
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member){
         Long id = memberService.join(member);
