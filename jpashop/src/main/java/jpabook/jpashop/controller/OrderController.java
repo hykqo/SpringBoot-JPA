@@ -17,14 +17,14 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("order")
+@RequestMapping("orders")
 public class OrderController {
 
     private final OrderService orderService;
     private final ItemService itemService;
     private final MemberService memberService;
 
-    @GetMapping("")
+    @GetMapping("new")
     public String createForm(Model model){
         List<Member> members = memberService.fineMembers();
         List<Item> items = itemService.findItems();
@@ -33,24 +33,24 @@ public class OrderController {
         return "order/orderForm";
     }
 
-    @PostMapping("")
+    @PostMapping("new")
     public String saveOrder(@RequestParam Long memberId,
                             @RequestParam Long itemId,
                             @RequestParam int count){
         orderService.order(memberId, itemId, count);
-        return "redirect:/order/list";
+        return "redirect:/orders";
     }
 
-    @GetMapping("list")
+    @GetMapping("")
     public String orderList(@ModelAttribute("orderSearch")OrderSearch orderSearch, Model model){
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
         return "order/orders";
     }
 
-    @PostMapping("list/{orderId}/cancel")
+    @PostMapping("{orderId}/cancel")
     public String cancelOrder(@PathVariable("orderId") Long id){
         orderService.cancelOrder(id);
-        return "redirect:/order/list";
+        return "redirect:/orders";
     }
 }
