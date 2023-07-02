@@ -1,4 +1,4 @@
-# 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발 & API 개발과 성능 최적화
+# 실전! 스프링 부트와 JPA 활용 - 웹 애플리케이션 개발 & API 개발과 성능 최적화
 
 <img src="https://img.shields.io/badge/JAVA-blue?style=flat&logo=OpenJDK&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-59666C?style=flat&logo=Hibernate&logoColor=white"/>
 <h3>상세내용</h3>
