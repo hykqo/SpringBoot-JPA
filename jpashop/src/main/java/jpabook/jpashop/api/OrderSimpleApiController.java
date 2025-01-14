@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * xToOne
+ * xToOne(ManyToOne, OneToOne)
  * Order
  * Order -> Member
  * Order -> Delivery

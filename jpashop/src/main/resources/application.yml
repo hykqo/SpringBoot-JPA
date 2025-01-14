@@ -1,9 +1,16 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/desktop/study/h2/jpashop
+    #url: jdbc:h2:tcp://localhost/~/desktop/study/h2/jpashop
+    url: 'jdbc:h2:mem:test'   # H2 DB 연결 주소 (In-Memory Mode)
+    #url: 'jdbc:h2:~/test'    # H2 DB 연결 주소 (Embedded Mode)
     username: sa
     password: 921013
     driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true           # H2 Console 사용 여부
+      path: /h2-console       # H2 Console 접속 주소
 
   jpa:
     hibernate:
